@@ -1,0 +1,13 @@
+BetterGravity Remote 0.4.8 Hotfix:
+1. Fixed collapsed sidebar expand/open mechanism:
+   - Restored .gemini-logo-btn in collapsed rail as an always-clickable 36x36 circular button with cursor:pointer.
+   - Added document-level capture listener on click so clicking the logo or toggle immediately expands/collapses cleanly.
+   - Synchronized toggleSidebarAction to toggle geometry with !important and smoothly notify React.
+   - Keyboard shortcut Ctrl+B and Cmd+B now reliably toggles in both directions (expand and collapse).
+2. Fixed machine indicator badge overflow (Image 2):
+   - In collapsed state, [data-bg-remote-machine] is hidden so the green dot and checkmark do not overflow out of the box.
+   - User avatar pill and settings button are centered at 32x32px.
+3. Fixed experience capsule switch overlapping (Image 3):
+   - Cleanly styled collapsed experience switch: track background and slider are hidden, and the capsule button is centered statically without offset.
+4. Fixed top bar gap under luminous line (Image 4):
+   - Aligned top header flush with body::before gradient line.

@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "BetterGravity Remote — Gemini App",
+  "version": "0.4.12",
+  "minimum_chrome_version": "111",
+  "description": "Portage du véritable module Gemini App de BetterGravity pour Antigravity Remote. Non officiel. Inclut le Chat Auxiliaire, LaTeX, verrouillage sidebar et bandeau supérieur transparent.",
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://antigravity.google.com/*",
+    "https://*.google.com/*",
+    "https://*.antigravity.google/*",
+    "https://*.usercontent.goog/*",
+    "http://localhost:*/*"
+  ],
+  "action": {
+    "default_title": "BetterGravity Remote",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://antigravity.google.com/*",
+        "https://*.antigravity.google/*",
+        "https://*.usercontent.goog/*",
+        "http://localhost:*/*"
+      ],
+      "all_frames": true,
+      "world": "MAIN",
+      "run_at": "document_start",
+      "js": [
+        "remote.js",
+        "auxiliary-chat.js"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+BetterGravity Remote — véritable module Gemini App adapté — 0.3.4
+
+Chrome / Chromium sur Linux, ChromeOS, Windows ou macOS :
+1. Désactiver l'ancienne copie de BetterGravity Remote (0.1 / 0.2 / 0.3.0 / 0.3.1 / 0.3.2 / 0.3.3).
+2. Désactiver les styles Stylus qui ciblent Antigravity.
+3. Décompresser l'archive dans un dossier permanent.
+4. Ouvrir chrome://extensions puis activer le bouton Mode développeur.
+5. Charger l'extension non empaquetée, sélectionner le dossier extension
+   qui contient manifest.json. Vérifier que la carte indique 0.3.4.
+   Pour une mise à jour en place, remplacer les fichiers de l’ancien dossier
+   par ceux du dossier extension, puis cliquer sur Recharger dans chrome://extensions.
+6. Ouvrir ou recharger ton adresse habituelle antigravity.google.com/r/...
+7. Épingler l'extension. Son icône ouvre Palette de couleurs : choisir une
+   variante Catppuccin et une pastille d'accent. Le changement est immédiat
+   et reste mémorisé. Le dépannage est rangé dans Diagnostic et dépannage.
+
+Pas de npm ni de terminal pour installer. Ne pas activer le mode développeur
+du système ChromeOS. Aucun composant à installer sur la machine distante.
+
+Cette version embarque le vrai module Gemini App et les styles de BetterGravity
+au commit indiqué dans PROVENANCE.json, avec une couche de compatibilité web.
+Elle ne remplace pas Antigravity et ne transfère aucune conversation.
+Ses seules requêtes restent celles qu'Antigravity fait déjà : les polices et
+images nécessaires sont embarquées. Aucun serveur ou service d'analyse ajouté.
+
+Chat = conversations hors projet ; Work = projets et conversations associées.
+Le comportement de création de Gemini App est conservé, avec correction des
+adresses de repli pour /web/<version>/. Le sélecteur de modèle, le champ de
+saisie, les menus, les bulles, les icônes et les styles sont ceux du module.
+
+Limites : le serveur web ne charge pas les correctifs préalables du bundle natif
+définis dans plugin.json. Les animations de révélation du markdown et les
+modifications natives de suivi automatique du défilement n'ont donc pas la
+parité intégrale du bureau. Pas d'API key, navigateur natif, Discord ou pets.
+Le nom/photo du compte depuis le profil Electron ne sont pas accessibles ;
+le module emploie son compte de repli. Les fonctions dépendent de la version
+de Remote : la rubrique Compatibilité de la popup indique leur reconnaissance.
+
+Secours : ouvrir la popup et cocher Liste native complète, ou Désactiver et
+recharger. Pour retirer entièrement : supprimer l'extension puis recharger.
+La désactivation n'efface pas les préférences locales, ni les skills locaux
+éventuellement créés dans la vue Skills. Aucun historique n'est supprimé.
+
+Source : https://github.com/YashjitPal/BetterGravity
+Licence MIT incluse, ressources et modifications tracées dans PROVENANCE.json.
+Adaptation indépendante, non affiliée à Google ou à BetterGravity.

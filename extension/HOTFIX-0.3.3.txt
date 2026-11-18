@@ -1,0 +1,37 @@
+BetterGravity Remote 0.3.3 — compatibilité Trusted Types
+
+Cause confirmée par le diagnostic de la 0.3.2 : Remote impose TrustedHTML
+pour les insertions HTML. Le module Gemini App utilisait innerHTML pour
+construire le bouton compact du switch, le logo, les menus et des dialogues.
+La liste et les groupes étaient reconnus mais ces créations échouaient.
+
+Correction : compilation des modèles HTML au moment de la construction.
+dom-compiler.mjs transforme les 33 affectations innerHTML et l'unique
+insertAdjacentHTML en créations de nœuds, avec cinq fabriques d'icônes.
+Le fichier source adapté generated-gemini.mjs est conservé. Le compilateur
+produit generated-dom-gemini.mjs, qui est ensuite embarqué dans remote.js.
+Les textes dynamiques restent des nœuds texte ou des valeurs d'attributs ;
+les fragments, listes et SVG deviennent des éléments avec leur namespace.
+L'option html inutilisée du helper d'UI n'est plus embarquée comme un sink.
+Aucun parseur HTML, politique Trusted Types ou changement de CSP n'est ajouté
+au produit. La construction échoue si un sink HTML survit dans le bundle.
+
+Validation :
+- trusted-types-tests.mjs : toutes les affectations HTML, DOMParser,
+  createContextualFragment et créations de politiques sont bloquées par le
+  banc d'essai. Switch, logo, projet et éditeur de Skills fonctionnent.
+- Modèles conditionnels, listes, SVG, textarea et attributs : textes contenant
+  des caractères HTML conservés littéralement, sans créer d'élément parasite.
+- Chromium : iframe d'une autre origine servie avec
+  require-trusted-types-for 'script'; trusted-types 'none'.
+  Une insertion témoin est réellement rejetée (test seulement) : la protection
+  est donc vérifiée active. Le switch est visible, Chat retire les projets,
+  Work les rétablit et le dialogue New project s'ouvre normalement.
+- Les tests smoke, lifecycle, adapter et route passent également.
+- Capture : verification-trusted-types-0.3.3.png, données fictives.
+
+Cette validation reproduit la protection qui causait l'erreur du Chromebook.
+Elle n'est pas une exécution directe sur ce Chromebook.
+
+Construction : node build-hotfix.mjs puis powershell -File package.ps1.
+Archive Linux : chemins extension/manifest.json vérifiés avec des slashs.

@@ -1,0 +1,33 @@
+BetterGravity Remote 0.3.1 — correctif de la version Catppuccin personnelle
+
+Le dossier de travail précédent est conservé intact. Cette copie conserve
+generated-styles.mjs et catppuccin.css de la version personnelle 0.3.0.
+
+Changements :
+- Switch Chat / Work dans un emplacement fixe sous Customizations, en dehors
+  du conteneur React de navigation et de la liste virtualisée.
+- Suppression du miroir de Customizations et du polling toutes les 400 ms.
+- Suppression de la marge négative calculée sur les noms de projets : le texte
+  commence à l'intérieur de son conteneur, sans perdre sa première lettre.
+- Nom complet disponible dans le libellé accessible et l'infobulle. Les noms
+  dépassant la largeur du panneau restent abrégés visuellement sur une ligne.
+
+Vérifications réalisées sur cette version :
+- smoke.mjs : démarrage, absence d'erreurs, switch unique, emplacement fixe,
+  navigation native préservée, reconstruction du switch, mode conservé.
+- adapter-tests.mjs : activation, préférences, popup et références du paquet.
+- route-tests.mjs : routes Chat et Work, paramètres Remote conservés.
+- Navigateur Chromium : vrais composants React et liste TanStack virtualisée ;
+  clic Chat -> conversations indépendantes ; clic Work -> projet et ses chats.
+  Mesure du titre EuroALM : marge gauche 0px ; texte et conteneur commencent
+  tous deux à 18px ; aucune première lettre hors du conteneur.
+- Capture verification-work-0.3.1.png : données fictives du banc d'essai.
+
+Limite : ce correctif n'a pas été exécuté dans le navigateur du Chromebook.
+La vérification du site Remote authentifié a servi à comparer la structure
+native de la barre latérale ; la validation du correctif est locale.
+
+Compilation : node build-hotfix.mjs conserve les sources personnelles.
+Ne pas exécuter build.mjs pour une correction incrémentale : il régénère les
+sources à partir du dépôt de référence et écraserait ces adaptations.
+Les empreintes des sources sont dans extension/PROVENANCE.json.

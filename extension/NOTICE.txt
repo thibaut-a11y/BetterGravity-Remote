@@ -1,0 +1,1 @@
+Includes the actual Gemini App script and all its styles, DOM/React helpers and :has() optimizer from BetterGravity. MIT license included. Fonts and artwork retain their original attribution; URLs and hashes are in PROVENANCE.json. No affiliation with Google or upstream. Host source-bundle patches are not applied.

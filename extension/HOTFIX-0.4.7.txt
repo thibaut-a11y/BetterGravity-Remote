@@ -1,0 +1,5 @@
+BetterGravity Remote 0.4.7 Hotfix:
+1. Fixed isSidebarCollapsed() geometry check: now prioritizes data-collapsed and aria-expanded over premature bounding rect checks, eliminating the snap-back bug where the sidebar reverted immediately to 288px.
+2. Broadened TOGGLE_SELECTOR to 'button[data-testid="sidebar-toggle"]' ensuring reliable element detection regardless of varying aria-labels.
+3. Added universal global keyboard shortcut listeners for Ctrl+B (Cmd+B on Mac) to reliably collapse/expand the left sidebar, and Ctrl+Alt+B (Cmd+Opt+B) to toggle the right aux panel.
+4. Synchronized all version identifiers to 0.4.7.

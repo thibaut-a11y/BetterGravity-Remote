@@ -1,0 +1,15 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>BetterGravity Remote</title><link rel="stylesheet" href="popup.css">
+<body><header><p>BETTERGRAVITY REMOTE</p><h1>Ton espace</h1><span id="status" role="status">Connexion à Remote…</span></header>
+<main>
+<button id="palette-toggle" aria-expanded="false" aria-controls="palette-panel"><span>Palette de couleurs</span><small id="palette-current">Mocha · Pêche</small></button>
+<section id="palette-panel" hidden aria-label="Personnalisation des couleurs">
+<label for="palette-flavor">Palette</label><select id="palette-flavor"><option value="mocha">Mocha · sombre</option><option value="macchiato">Macchiato · sombre</option><option value="frappe">Frappé · sombre</option><option value="latte">Latte · claire</option></select>
+<p class="field-label">Couleur d’accent <span id="accent-name">Pêche</span></p><div id="accent-grid" role="group" aria-label="Couleur d’accent"></div>
+<button id="palette-reset">Revenir à Mocha · Pêche</button><p class="hint">Application immédiate, choix conservé après rechargement.</p>
+</section>
+<button id="enable">Désactiver et recharger</button>
+<details><summary>Diagnostic et dépannage</summary>
+<button id="repair">Rétablir le sélecteur</button>
+<label class="check"><input type="checkbox" id="native">Liste native complète · secours</label>
+<pre id="details"></pre><p>Les modifications du moteur natif de rendu des réponses et du suivi du défilement ne sont pas appliquées.</p>
+<a href="https://github.com/YashjitPal/BetterGravity/tree/7229c6e20af812a7df26b38207275031323331a7/community/plugins/gemini-app" target="_blank" rel="noreferrer">Source BetterGravity</a> · <a href="https://github.com/catppuccin/palette" target="_blank" rel="noreferrer">Palettes Catppuccin</a></details></main><script src="palette-data.js"></script><script src="popup.js"></script></body></html>

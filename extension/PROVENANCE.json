@@ -1,0 +1,224 @@
+{
+  "repository": "https://github.com/YashjitPal/BetterGravity",
+  "commit": "7229c6e20af812a7df26b38207275031323331a7",
+  "plugin": "community/plugins/gemini-app",
+  "pluginVersion": "0.5.0",
+  "originalScriptSha256": "f0d9d6187e94adf5baf293183ea4a016d92021e8e282c490516ebc84083f5ed1",
+  "adaptedScriptSha256": "d5e846e5acd1a1bb741d1f4693f4cfb903a6208aab4cb7fe550ad6a64997c1ff",
+  "patches": [
+    {
+      "reason": "Keep new-conversation fallback inside /web/<version>/",
+      "count": 2,
+      "from": "url.pathname = '/';",
+      "to": "url.pathname = remoteHomePath();"
+    },
+    {
+      "reason": "Preserve iframe query parameters and clear inherited conversation hash",
+      "count": 1,
+      "from": "url.search = '?section=outside-of-project';",
+      "to": "url.searchParams.set('section', 'outside-of-project');\n        url.hash = '';"
+    },
+    {
+      "reason": "Do not inherit a stale project when no project is selected",
+      "count": 1,
+      "from": "url.search = `?section=${encodeURIComponent(targetProjId)}`;",
+      "to": "url.searchParams.set('section', targetProjId);\n        } else {\n          url.searchParams.delete('section');"
+    },
+    {
+      "reason": "Clear inherited conversation hash for both cold-entry fallbacks",
+      "count": 2,
+      "from": "        window.location.href = url.toString();",
+      "to": "        url.hash = '';\n        window.location.href = url.toString();"
+    },
+    {
+      "reason": "Native-list recovery without rewriting filtering",
+      "count": 1,
+      "from": "function transformItems(items, fiber) {",
+      "to": "function transformItems(items, fiber) {\n  if (remoteNativeList) return items;"
+    },
+    {
+      "reason": "Never reparent unrecognized React-owned Remote navigation nodes",
+      "count": 1,
+      "from": "Array.from(topNav.children).filter((child) => !isPinnedTopNavItem(child))",
+      "to": "Array.from(topNav.children).filter((child) => child.hasAttribute(\"data-bettergravity-button\") && !isPinnedTopNavItem(child))"
+    },
+    {
+      "reason": "Constrain Skills overlay to the actual main viewport",
+      "count": 1,
+      "from": "  return document.body;\n}\n\nlet activeKebabPopover",
+      "to": "  return remoteMainViewport();\n}\n\nlet activeKebabPopover"
+    }
+  ],
+  "resources": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400..700&display=swap",
+      "sha256": "7bbf2387cf93b6b20dee094bc5b28eb44b58bca82ea5afe46d54fe1cd099e960",
+      "bytes": 1056
+    },
+    {
+      "url": "https://www.gstatic.com/images/branding/productlogos/docs_2026/v2/web-96dp/logo_docs_2026_color_2x_web_96dp.png",
+      "sha256": "3544779ba1a03e393486f6a67ea91153023a40dffbbe66e496791e65b87dc2ea",
+      "bytes": 5950
+    },
+    {
+      "url": "https://fonts.gstatic.com/l/font?kit=Hhy3U5Ak9u-oMExPeInvcuEmPosC9zS3FYkFU68cPrjdKM1pSPywlmmzc_ohQP9PrWumSDfXZxlcLqnGuwPZJBWrKZK2S-fE6UUzh2RWzVEAcGuQIMHU6OgQWFMwv6w1TNW0QbUB0XTpF8EwYoE4BAqaRWApyCGPE3YKcBsghyt8NVLh4dETuz1qCQpZUlrHmYwelSK7HxjVZM7gJvdXN6P1qwWdwmvsdAKeLJkkXV8Q88WNQ70E_ETQqKkZZebpfaO-iLok9YWXQQFAEd3yGVWEErz4mQT6HwMKUW2MemcalMryuSxZzZmJ2aR3oAY7XYhBQXtZjIqkQSlc-WMHg8kV8HsfXP4-&skey=f8ec4d50247dc1c1&v=v454",
+      "sha256": "cd49d17a464b9904838aa0f8ced56cc5059e165f1dae0f02dd452e6013e49d43",
+      "bytes": 101476
+    },
+    {
+      "url": "https://fonts.gstatic.com/l/font?kit=daaDSSYgOGmYaRLpq55MPuzv2kUK2zvmTflyWwG1oySatCZuAYA-8NIsLW680OBb5BBuQa5Dapuzovt2J0psqvrJKUiguriqj38pHhH1_FWVNba9XW1Z0j1SYPtVC_039jdnbiSlMoNYz-sc0l6o2XJnFRZd3LtfgXCEn5sBwOYz9JY-vfCcEZCekq8BFb41oUHJ21PTFnZb2RMMwYCzB7F1mdUaFrYUswpxtQdEmjoEM8p6oWeeN_ktEB1SdkIa-kcux3UrQOn_dQjRWbZcMVX1_RESDzbwHtbyk5rWjbipp7mDJwP4NckVMay3Le8j78DOKTOoejXKXxhX1w78YI4BFD7bbtw99OVHnoVj&skey=bef131c18897d264&v=v38",
+      "sha256": "aaa3f3ce7419c7faa48444336352a24f106b41190f8326c7ffbfc42e5c1908bd",
+      "bytes": 135300
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/googlesansflex/v11/t5tQIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x4d-JwN2l9sIKwpINJwakXdYAZzz0jbnDYatsQ.woff2",
+      "sha256": "2abf41b7041e186ad9c1b0705d7df484588edaaf3e9ea68a9546211642520e47",
+      "bytes": 619868
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/googlesanscode/v22/pxihyogzv91QhV44Z_GQBHsGf5PuckJMZfIVTPZaiXEp_ht12EVEHsN1sCQNlWPVsw.ttf",
+      "sha256": "bc850824381d46c04fb42a20d0d6a2b5197200d251f39e5c00180017b4332d46",
+      "bytes": 98264
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/googlesanscode/v22/pxihyogzv91QhV44Z_GQBHsGf5PuckJMZfIVTPZaiXEp_ht12EVEHsN1sCQNrGPVsw.ttf",
+      "sha256": "f7eb9533c1e6c47d4259bc66053ee23d9ce39a2050695057bc2ca836ec03e6cb",
+      "bytes": 98080
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/googlesanscode/v22/pxihyogzv91QhV44Z_GQBHsGf5PuckJMZfIVTPZaiXEp_ht12EVEHsN1sCQNQGTVsw.ttf",
+      "sha256": "3b6b6371dc501f1c1f14d8aa686261e1ef59b8e59e0e4eb01d6fa114512274e5",
+      "bytes": 97740
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/googlesanscode/v22/pxihyogzv91QhV44Z_GQBHsGf5PuckJMZfIVTPZaiXEp_ht12EVEHsN1sCQNcmTVsw.ttf",
+      "sha256": "3c84b7523b1a74cb9653e0b5d2b5b82fe60ba8bd6d1b92d236baa05d4a9f9081",
+      "bytes": 97764
+    }
+  ],
+  "styleFiles": [
+    {
+      "file": "conversation.css",
+      "sha256": "1abb6d1b6bdb8bc326ebac73a5e3c4d66f68638f1c03cc3818e91d4ecfdbe7a3"
+    },
+    {
+      "file": "dialog.css",
+      "sha256": "1affba6d385793c4bdb97ce9bffddb5d04b8a519cca2fb0664eddaa0db76f9f4"
+    },
+    {
+      "file": "gemini-app.css",
+      "sha256": "111b0458af445d3967ec4650f850ccfd2f2202478ccc25ca0a04408b258907cd"
+    },
+    {
+      "file": "history.css",
+      "sha256": "5b57cebd8e13b6c8ca4eb5ae1d010eee1b4a2d36835d7531840135c2f6a7cd88"
+    },
+    {
+      "file": "home-composer.css",
+      "sha256": "82ab8467636c0754ffffdc39705f0e0c8780277371368558f1741f58b12c9ef5"
+    },
+    {
+      "file": "home-glow.css",
+      "sha256": "0f10e32b01a5b1e88a0e9d57dce3e745a4f412f362a069f2d9abeeee6cf167a1"
+    },
+    {
+      "file": "model-selector.css",
+      "sha256": "bd6ee9e03aef8458e3259c7dee92be4763be2f2636be63a0633a817232ce3f5b"
+    },
+    {
+      "file": "plus-menu.css",
+      "sha256": "333b571b0cde54ea0231042520345160b62cb1a99c460c31589c1de4b3af2895"
+    },
+    {
+      "file": "prompt-box.css",
+      "sha256": "1e462cc5a2a296665c03a86f43b069cfcd4b94b6a2e976eb4d0318ae74065348"
+    },
+    {
+      "file": "question-box.css",
+      "sha256": "a6f1728676501a5e7d9424790285c761d3206f2ba521b19e5be38b913c37f92b"
+    },
+    {
+      "file": "schedules.css",
+      "sha256": "33284bc8ed98e597743119c7edc09fa91f2647631920908e574d7273f3e37284"
+    },
+    {
+      "file": "sidebar.css",
+      "sha256": "d83c785dd20a1c5283aca648879c482ce4eed61aa7061842b66d7f057fd71d1a"
+    },
+    {
+      "file": "skills-tab.css",
+      "sha256": "88cec72363d5771659324eb9e92fdbfe29ceb27586e849a3d139632a31ebafce"
+    },
+    {
+      "file": "slash-menu.css",
+      "sha256": "5d1f11b93cf8fb8d01eed3e2eaddce2770d68778c062e8c4029cb92e335d69aa"
+    },
+    {
+      "file": "tokens.css",
+      "sha256": "b1618889349e81c54453a075f0a79260039d8eb81b66973b0526f321f0698e68"
+    },
+    {
+      "file": "tooltip.css",
+      "sha256": "de930a2e37493ba4d2c84fddde9f9a3d9267c5e4024cec912dee7dbb500e5f20"
+    }
+  ],
+  "remoteOverridesSha256": "1807e277d6f10ba6e31e867ddaf240ba22b58091fa74800df82a517f73a2789d",
+  "notApplied": [
+    "Cache the native color table until the root style/class, stylesheet count, or stylesheet content changes. Head mutations are filtered to styles and links: switching a conversation changes its title, which must not discard the color cache and force another style calculation. Stylesheet media, href, rel, and disabled changes still invalidate it.",
+    "The hook behind the fading edges of every scrolling area watches the scroller and each of its children for resizes, and watches for rows being added or removed. Every one of those notifications measured the scroller immediately, so a chat list swapping rows in and out measured once per batch — the single most expensive thing in a profile of switching chats and collapsing the rail. Coalesce the notifications to one measurement per frame. The browser paints once per frame, so the fades land on exactly the same pixels; the first measurement after mount and the one driven by the scroll event are both left alone.",
+    "Every label in the sidebar that can be clipped runs a hook that measures whether it is clipped, on mount and on every resize, and writes the answer into React state. Measuring is a scrollWidth read, which has to be answered with the truth, so it forces the browser to lay the page out if anything has been written since the last time it did. One label per row, each measuring and then writing, means one full layout per row: the third most expensive thing in a profile of switching chats and collapsing the rail. Collect the measurements instead, then take all the readings together and write all the answers afterwards, so a rail full of rows costs one layout rather than one each. The reading itself is unchanged and still lands in the same task, before anything is painted.",
+    "Group native conversation-list row measurements before notifying React of their sizes. Ref attachment, ResizeObserver registration, existing size caches, scrolling rules, and the measured values are unchanged. Jobs run in a microtask before paint; removed or reused rows are ignored. Other virtual lists keep the native path.",
+    "Disable automatic following of growing responses and steps inside conversations while Gemini App is running. Preserve initial positioning, explicit jump-to-bottom, native user-scroll handling, and smooth/instant behavior. Remaining scroll requests are coalesced and all heights are read before any scrolling. The policy, batching helper, and explicit-jump callback are installed together by one guarded hook replacement; disabled Gemini App and unrelated viewports retain native following. A submitted turn owns initial positioning until its entrance completes; an explicit user jump interrupts that entrance before scrolling.",
+    "Reuse the native artifact, upload, and command-palette projections when revisiting an unchanged artifact list. Each projection owns a separate cache with weak array keys and at most four recent lists. Entry identity, URI, timestamp object/fields, ordering, and workspace are checked before reuse. The original mapping, filtering, sorting, icons, error handling, and React hook order stay intact. Each complete component replacement includes its own cache so a version mismatch cannot leave an undefined helper.",
+    "Opt the native markdown renderer into Gemini's streaming reveal while this plugin is running. One guarded replacement supplies the optional rehype/components hook, root ref, and React bridge; a host version mismatch cannot install half a hook. The ref lets the response footer wait for visual completion without observers or layout changes. The original renderer, markdown plugins, links, code, and wrapper layout are retained. The bridge falls back to the native renderer when Gemini App is disabled.",
+    "Let Gemini App own the scroll associated with a newly submitted user turn. Pass its conversation id to the entrance bridge so another pane, queued message, or history navigation cannot consume the submit. The native send callback remains the fallback when the plugin is disabled or no actual submit is armed. This does not delay the API request or follow generated output.",
+    "Reuse the native changed-file URI projection when its ordered paths and workspace are unchanged, including across conversation mounts. Provider updates still inspect every URI, so insertion, removal, reordering, and in-place edits are immediate. Keep the native mapper, error handling, and equality function. Retain only path strings and results, bounded to four projections and 8,192 paths; never retain provider states or file contents. Accessor-based rows, object workspaces, failed conversions, and externally modified results use the native path.",
+    "Reuse only the string labels and relative paths of unchanged file suggestions across composer renders and mounts. The native union order, knowledge-file classification, React icon creation, workspace folders, and hook dependencies remain unchanged. Cache keys are the file URI and the single workspace-folder URI (multiple folders use the native absolute-path branch). Bound the cache to 4,096 entries and 1,048,576 string characters; retain no React elements, callbacks, provider states, or conversation trees.",
+    "Reuse the immutable URI authority and fragment-free URI strings used by file-suggestion knowledge checks. Continue reading the live knowledge map and every artifactSourceUris membership on each call, including in-place edits; never cache classification results, records, URI objects, or callbacks. Preserve native parsers, failures, and hook dependencies. Bound the shared string cache to 4,096 entries and 1,048,576 characters."
+  ],
+  "remoteVersion": "0.3.4",
+  "hotfix": {
+    "base": "User-modified Catppuccin 0.3.0; generated sources preserved",
+    "changes": [
+      "Pinned Chat/Work slot below native Customizations, outside virtualized rows",
+      "Remove Customizations mirror and 400ms polling",
+      "Remove desktop negative title margins on Remote",
+      "Wait for the actual Remote sidebar and detect it from its native controls",
+      "Select the iframe containing the conversation list in the popup; scope actions to it",
+      "Remove Chat/Work popup duplicates; expose frame-specific diagnostics",
+      "Compile 33 HTML assignments and one HTML insertion to direct DOM construction; compile five icon factories; remove unused HTML sink from UI helper",
+      "Pin tool rows before Chat/Work; position native search away from the logo; remove Work dot",
+      "Classify conversations from native section membership and stop hiding recycled virtual rows by CSS",
+      "Add four official Catppuccin palettes and fourteen persisted accent choices in the popup"
+    ],
+    "files": {
+      "runtime.ts": "7404f9834bce6736a85b6bf37530679367cc6a206659baa1db43e57f6f215563",
+      "remote-context.ts": "53f17dac4c8f7b465d8735bcf778f0e9e7941be068ac4bb495c38e73aeab3d34",
+      "remote-groups.mjs": "809424208e42f3b4de68131f7a198b839dcf6fd2be67226f10e709b1e75ae44c",
+      "palette.ts": "e93c77e8eaf7f8796dd1a907b78c59a5cb6cad52a1058c67cb1d80923714c106",
+      "catppuccin-palette.json": "4bc114bb6b3c9a9c9e156564aa84625aef32c5da514d9dd431cf1fcad433a05f",
+      "palette-data.json": "0421ce380d6b6a26c5d96876012dfb9a60bf3122e2022efaab52a6285afb06a3",
+      "remote-dom.ts": "e7c7354541199cb3b6ade7f8a7af702216deb832e44d0c2c0ed649a1c8db601e",
+      "dom-compiler.mjs": "e07c21c33f9a9c9f1494a70422c3f73b25b57defcd19191e29e15f5ad074990a",
+      "generated-dom-gemini.mjs": "21f16d597b5159ed37071dd4ca497187cf99b242567e3b489db5eabdd8c9b23b",
+      "generated-gemini.mjs": "4216c4b5b345c0cb2e33accb924910277072c5570d000af09985c29da63e68bd",
+      "generated-styles.mjs": "054af301a0a436aea1e78621f5acfc58deca0e21c77e6279caa359a6fba2d123",
+      "remote-overrides.css": "e06b067dc1bfc07f0e4c7b5d37f31207ad4d2941b0384d055c76eebb68664179",
+      "catppuccin.css": "7202b9309bce2271dc67a4489c0820a84a62f983af69a28d2dffc58540c203e2",
+      "popup.js": "be39623103e1a9eea0fe960f55f313e86db4279e84354469dedf7623148a9c28",
+      "popup.html": "ce108f15c822c88c268f051bbb9a0e320cfe3b23b7a48c2e5471fe1803e407fa",
+      "popup.css": "489cb6d37461c17ef357ce603dce7b100d11086c28fca3264582f305b8c363af"
+    }
+  },
+  "domCompilation": {
+    "assignments": 33,
+    "icons": 5,
+    "insertions": 1,
+    "policy": "DOM construction only; no HTML parsing sink or Trusted Types policy"
+  },
+  "catppuccin": {
+    "repository": "https://github.com/catppuccin/palette",
+    "version": "1.8.0",
+    "license": "LICENSE-Catppuccin.txt"
+  }
+}

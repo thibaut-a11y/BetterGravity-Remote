@@ -1,0 +1,45 @@
+BetterGravity Remote 0.3.4 — navigation, récents et palettes
+
+Corrections demandées :
+- Le bouton natif Search Conversations reste fonctionnel et est positionné
+  entre le nom Antigravity et le bouton de repli. Sa position suit la largeur
+  de la barre latérale ; il ne chevauche plus le logo.
+- Suppression du point devant Work ; maintien du libellé et du badge BETA.
+- Skills, Scheduled Tasks si présent, New project en mode Work et Display
+  options sont dans un emplacement fixe au-dessus du switch Chat / Work.
+  Les éléments React natifs ne sont pas déplacés.
+- Le filtre des récents reconnaît standalone et outside-of-project, se base
+  d'abord sur l'appartenance native aux sections, puis sur le groupe de ligne.
+  Un contexte de travail inféré d'un résumé ne l'emporte plus sur une
+  appartenance explicite hors projet. Les lignes sans affectation connue
+  restent visibles en Chat. Les épinglés suivent leur vraie affectation.
+- Suppression du masquage CSS des lignes virtualisées par data-bg-section :
+  ces marques pouvaient rester sur des éléments recyclés entre Work et Chat.
+  Le filtrage intervient avant la virtualisation. Aucun historique n'est effacé.
+- Popup : bouton Palette de couleurs, quatre variantes Catppuccin (Mocha,
+  Macchiato, Frappé, Latte) et quatorze accents officiels. Application immédiate
+  et préférence conservée par origine Remote après rechargement. Mode Latte
+  explicite via color-scheme: only light pour éviter la recoloration automatique.
+  Données Catppuccin 1.8.0 embarquées avec leur licence MIT, sans requête réseau.
+
+Validation :
+- recent-palette-tests.mjs couvre le véritable transformItems adapté : types
+  de groupes, contexte de travail erroné, épinglés, groupes absents, alternance
+  Chat/Work. Vérifie aussi le changement de palette/accent et sa persistance.
+- smoke, lifecycle, adapter, routes et Trusted Types : vérifications conservées.
+- Chromium avec require-trusted-types-for 'script'; trusted-types 'none' :
+  outils au-dessus du switch, loupe sans chevauchement, zéro élément de point
+  Work, récents visibles après plusieurs allers-retours Chat/Work. La liste de
+  test recycle volontairement ses conteneurs par index et utilise les deux
+  identifiants de groupes pour les récents, avec un groupe hors projet dans
+  l'état propriétaire React. Le contrôle de palette pilote la vraie instance
+  du module dans le banc d'essai (pont Chrome simulé uniquement pour la popup).
+- Mocha, accent Mauve puis Bleu, et Latte : couleurs rendues et persistées.
+- Capture verification-palette-recents-0.3.4.png : données fictives.
+
+La validation locale ne constitue pas une vérification dans le navigateur du
+Chromebook. Le diagnostic affiche désormais aussi les nombres de conversations
+récentes disponibles dans les lignes natives et les données hors projet.
+
+Construction : node build-hotfix.mjs puis powershell -File package.ps1.
+Conserver le compilateur DOM de la 0.3.3 pour Trusted Types.

@@ -1,0 +1,31 @@
+BetterGravity Remote 0.3.2
+
+Le sélecteur principal Chat / Work reste dans la barre latérale, sous
+Customizations. Les boutons de mode ont été retirés de la popup : elle
+conserve l'état de l'intégration, la réparation et les réglages avancés.
+
+Défauts corrigés :
+- La popup prenait le premier résultat des cadres de la page, souvent la
+  page Google extérieure. Elle choisit désormais le cadre contenant la liste
+  de conversations et envoie les commandes uniquement à celui-ci.
+- Le module attend les contrôles natifs de Remote avant de démarrer. La
+  détection de la barre latérale ne dépend plus de son aria-label anglais.
+- La suppression d'un descendant du conteneur du switch déclenche son
+  remontage. Un bouton de réparation appelle le même mécanisme.
+- La préférence de liste native de secours est respectée après rechargement.
+
+Vérification : smoke.mjs, lifecycle-tests.mjs, adapter-tests.mjs et
+route-tests.mjs. Les tests couvrent le chargement tardif, le nom localisé
+de la navigation, sa reconstruction, la sélection du bon cadre et les
+commandes de popup ciblées. Le banc d'essai utilise React, TanStack Virtual
+et les styles natifs de Remote. Dans Chromium, une page 127.0.0.1:8767
+intègre l'interface de test depuis 127.0.0.1:8768 (origines distinctes).
+Les clics Chat -> Work ont été vérifiés, ainsi que la stabilité du mode Work.
+La capture verification-iframe-0.3.2.png contient des données fictives.
+
+Limite : installation sur le Chromebook non vérifiée à distance. La 0.3.1
+avait été signalée comme sans switch par l'utilisateur ; ces tests de la
+0.3.2 ne constituent pas une confirmation sur son navigateur.
+
+Construction : node build-hotfix.mjs puis powershell -File package.ps1.
+Le ZIP contient des chemins extension/manifest.json avec des slashs Linux.
